@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>formfaktor3d.de</title>
+<meta name="description" content="FORMFAKTOR 3D-Druckdienstleistungen – 3D-Scan, 3D-Konstruktion und 3D-Druck in Kirchheim unter Teck.">
+<link rel="icon" href="favicon.png" type="image/png">
+<link rel="shortcut icon" href="favicon.png">
+<link rel="apple-touch-icon" href="favicon.png">
+<meta name="theme-color" content="#090909">
+<meta property="og:type" content="website">
+<meta property="og:title" content="FORMFAKTOR – 3D-Druck Kirchheim unter Teck">
+<meta property="og:description" content="3D-Scan, 3D-Konstruktion und 3D-Druck – FORMFAKTOR, Kirchheim unter Teck.">
+<meta property="og:url" content="https://formfaktor3d.de/">
+<meta property="og:image" content="https://formfaktor3d.de/favicon.png">
+<style>
+  /* Bunny Fonts – DSGVO-konform, EU-gehostet, kein Tracking */
+  @import url('https://fonts.bunny.net/css?family=bebas-neue:400|roboto:300,400,500&display=swap');
+
+  :root {
+    --bg:    #090909;
+    --light: #84a6e9;
+    --white: #ebebeb;
+    --muted: #8aafc9;
+    --dim:   rgba(255,255,255,0.055);
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--bg);
+    color: var(--white);
+    font-family: 'Roboto', sans-serif;
+    font-size: 12pt;
+    font-weight: 300;
+    min-height: 100vh;
+    min-height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: radial-gradient(circle, rgba(255,255,255,0.16) 1px, transparent 1px);
+    background-size: 40px 40px;
+    mask-image: radial-gradient(ellipse 78% 78% at 50% 50%, black 10%, transparent 100%);
+    pointer-events: none;
+  }
+  .glow {
+    position: fixed;
+    width: 580px; height: 580px;
+    background: radial-gradient(circle, rgba(36,63,120,0.19) 0%, transparent 65%);
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+  }
+
+  /* ── Language Toggle ───────────────────────────── */
+  .lang-toggle {
+    position: fixed;
+    top: 1.4rem;
+    right: 1.6rem;
+    z-index: 100;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-family: 'Roboto', sans-serif;
+    font-size: 0.68rem;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--white);
+    padding: 0.38rem 0.8rem;
+    transition: color 0.2s;
+  }
+  .lang-toggle:hover { color: var(--light); }
+
+  /* ── Card ──────────────────────────────────────── */
+  .card {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    width: min(480px, 88vw, 88vh);
+    aspect-ratio: 1 / 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 3rem;
+    border: 1px solid rgba(255,255,255,0.16);
+    background: rgba(10,10,10,0.93);
+    animation: fadeIn 0.9s ease both;
+    margin-top: auto;
+    margin-bottom: auto;
+  }
+  .logo-wrap { width: 100%; margin-bottom: 1.8rem; }
+  .logo-svg {
+    width: 100%;
+    max-width: 340px;
+    height: auto;
+    fill: var(--white);
+    display: block;
+    margin: 0 auto;
+  }
+  .divider {
+    width: 32px;
+    height: 1px;
+    background: rgba(255,255,255,0.11);
+    margin-bottom: 1.4rem;
+  }
+  .eyebrow {
+    font-family: 'Roboto', sans-serif;
+    font-size: 0.57rem;
+    font-weight: 400;
+    letter-spacing: 0.38em;
+    text-transform: uppercase;
+    color: var(--light);
+    margin-bottom: 0.7rem;
+  }
+  .message {
+    font-family: 'Roboto', sans-serif;
+    font-size: 0.92rem;
+    font-weight: 300;
+    line-height: 1.8;
+    color: var(--muted);
+    letter-spacing: 0.015em;
+    margin-bottom: 2.2rem;
+    max-width: 265px;
+  }
+  .message strong { color: var(--white); font-weight: 400; }
+  .contact-link {
+    display: inline-block;
+    font-family: 'Roboto', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--bg);
+    background: var(--light);
+    padding: 0.78rem 1.9rem;
+    text-decoration: none;
+    border: 1px solid var(--light);
+    transition: background 0.25s, border-color 0.25s;
+    clip-path: polygon(6px 0%, 100% 0%, calc(100% - 6px) 100%, 0% 100%);
+  }
+  .contact-link:hover, .contact-link:focus {
+    background: var(--white);
+    border-color: var(--white);
+    outline: none;
+  }
+
+  /* ── Footer ────────────────────────────────────── */
+  footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.85rem;
+    padding: 1.5rem 1.5rem;
+    opacity: 0;
+    animation: fadeIn 0.9s ease 1s both;
+  }
+  .footer-copy {
+    font-family: 'Roboto', sans-serif;
+    font-size: 0.58rem;
+    font-weight: 300;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    opacity: 0.55;
+    white-space: nowrap;
+  }
+  footer a {
+    font-family: 'Roboto', sans-serif;
+    font-size: 0.68rem;
+    font-weight: 400;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--white);
+    opacity: 0.72;
+    text-decoration: none;
+    transition: color 0.2s, opacity 0.2s;
+    white-space: nowrap;
+  }
+  footer a:hover { color: var(--light); opacity: 1; }
+
+  @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+</style>
+</head>
+<body>
+<div class="glow"></div>
+
+<button class="lang-toggle" id="langToggle" onclick="toggleLang()" aria-label="Switch language">EN</button>
+
+<div class="card" role="main">
+  <div class="logo-wrap">
+    <svg class="logo-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3000 358.463" role="img" aria-label="FORMFAKTOR">
+      <g><path d="M819.057,1083.2l88.66-181.78a105.824,105.824,0,0,0-106.8,58.787l-29.642,60.775a13.229,13.229,0,0,1-11.889,7.429h-103.1a98.552,98.552,0,0,0-92.6,64.818H803.006A17.859,17.859,0,0,0,819.057,1083.2Z" transform="translate(-420 -900.768)"/></g>
+      <g><path d="M751.131,1222.467l29.644-60.778a5.292,5.292,0,0,0-4.756-7.611H545.668A140.2,140.2,0,0,0,420,1232.125H735.675A17.2,17.2,0,0,0,751.131,1222.467Z" transform="translate(-420 -900.768)"/></g>
+      <g><path d="M1172.927,1005.922A140.2,140.2,0,0,0,1298.6,927.875H982.92a17.2,17.2,0,0,0-15.457,9.658L937.82,998.311a5.292,5.292,0,0,0,4.756,7.611Z" transform="translate(-420 -900.768)"/></g>
+      <g><path d="M1062.307,1131.59h-103.1a13.229,13.229,0,0,0-11.889,7.429l-29.642,60.775a105.825,105.825,0,0,1-106.8,58.787l88.66-181.78a17.859,17.859,0,0,1,16.051-10.029H1154.9A98.55,98.55,0,0,1,1062.307,1131.59Z" transform="translate(-420 -900.768)"/></g>
+      <path d="M1273.252,1066.6h74.271v25.523h-46.2v49.77h36.243v25.523h-36.243v77.844h-28.075Z" transform="translate(-420 -900.768)"/>
+      <path d="M1486.625,1202.9v-93.924c0-28.586,15.059-44.92,42.623-44.92s42.624,16.334,42.624,44.92V1202.9c0,28.586-15.059,44.921-42.624,44.921S1486.625,1231.481,1486.625,1202.9Zm57.171,1.787v-97.5c0-12.762-5.615-17.611-14.548-17.611s-14.548,4.849-14.548,17.611v97.5c0,12.761,5.615,17.611,14.548,17.611S1543.8,1217.443,1543.8,1204.682Z" transform="translate(-420 -900.768)"/>
+      <path d="M1718.375,1066.6h41.6c29.1,0,41.6,13.527,41.6,41.092v10.975c0,18.376-5.871,30.117-18.377,35.221v.511c14.038,4.339,18.632,17.611,18.632,37.774v31.393c0,8.678.255,15.059,3.063,21.694h-28.586c-1.531-4.593-2.552-7.4-2.552-21.949v-32.669c0-16.59-4.85-21.95-17.611-21.95h-9.7v76.568h-28.075Zm38.284,76.569c10.465,0,16.845-4.594,16.845-18.887V1110.5c0-12.762-4.338-18.377-14.293-18.377H1746.45v51.046Z" transform="translate(-420 -900.768)"/>
+      <path d="M1948.85,1066.6h40.071l17.866,127.87h.511l17.865-127.87h40.071v178.66h-26.543v-135.27h-.511l-20.418,135.27h-23.481l-20.418-135.27h-.511v135.27h-24.5Z" transform="translate(-420 -900.768)"/>
+      <path d="M2213.781,1066.6h74.271v25.523h-46.2v49.77H2278.1v25.523h-36.243v77.844h-28.074Z" transform="translate(-420 -900.768)"/>
+      <path d="M2442.723,1066.6h38.029l29.1,178.66h-28.076l-5.1-35.477v.511h-31.9l-5.105,34.966h-26.032Zm30.628,119.447-12.506-88.309h-.511l-12.251,88.309Z" transform="translate(-420 -900.768)"/>
+      <path d="M2650.99,1066.6h28.075V1141.9L2714.8,1066.6h28.074l-33.434,65.594,33.945,113.066h-29.351l-23.736-79.631-11.231,22.715v56.916H2650.99Z" transform="translate(-420 -900.768)"/>
+      <path d="M2906.219,1092.126h-29.351V1066.6h86.777v25.523h-29.351v153.137h-28.075Z" transform="translate(-420 -900.768)"/>
+      <path d="M3101.727,1202.9v-93.924c0-28.586,15.059-44.92,42.624-44.92s42.623,16.334,42.623,44.92V1202.9c0,28.586-15.059,44.921-42.623,44.921S3101.727,1231.481,3101.727,1202.9Zm57.171,1.787v-97.5c0-12.762-5.614-17.611-14.547-17.611s-14.548,4.849-14.548,17.611v97.5c0,12.761,5.615,17.611,14.548,17.611S3158.9,1217.443,3158.9,1204.682Z" transform="translate(-420 -900.768)"/>
+      <path d="M3333.478,1066.6h41.6c29.1,0,41.6,13.527,41.6,41.092v10.975c0,18.376-5.87,30.117-18.376,35.221v.511c14.037,4.339,18.632,17.611,18.632,37.774v31.393c0,8.678.254,15.059,3.062,21.694h-28.585c-1.532-4.593-2.553-7.4-2.553-21.949v-32.669c0-16.59-4.849-21.95-17.611-21.95h-9.7v76.568h-28.074Zm38.284,76.569c10.464,0,16.845-4.594,16.845-18.887V1110.5c0-12.762-4.339-18.377-14.293-18.377h-12.762v51.046Z" transform="translate(-420 -900.768)"/>
+    </svg>
+  </div>
+  <div class="divider"></div>
+  <p class="eyebrow" data-i18n="eyebrow">// Domain-Status</p>
+  <p class="message" data-i18n-html="message">Die Domain <strong>formfaktor3d.de</strong> ist bereits registriert.</p>
+  <a href="mailto:lukas.hannert@formfaktor3d.de" class="contact-link" data-i18n="cta">Kontakt aufnehmen</a>
+</div>
+
+<footer>
+  <a href="impressum.html" data-i18n="imprint">Impressum</a>
+  <span class="footer-copy" data-i18n="copyright">© 2026 FORMFAKTOR 3D-Druck Lukas Hannert – Alle Rechte vorbehalten</span>
+</footer>
+
+<script>
+const t = {
+  de: {
+    title:     'formfaktor3d.de',
+    eyebrow:   '// Domain-Status',
+    message:   'Die Domain <strong>formfaktor3d.de</strong> ist bereits registriert.',
+    cta:       'Kontakt aufnehmen',
+    copyright: '© 2026 FORMFAKTOR 3D-Druck Lukas Hannert – Alle Rechte vorbehalten',
+    imprint:   'Impressum'
+  },
+  en: {
+    title:     'formfaktor3d.de',
+    eyebrow:   '// Domain Status',
+    message:   'The domain <strong>formfaktor3d.de</strong> is already registered.',
+    cta:       'Get in touch',
+    copyright: '© 2026 FORMFAKTOR 3D-Druck Lukas Hannert – All rights reserved',
+    imprint:   'Legal Notice'
+  }
+};
+
+let currentLang = 'de';
+
+function toggleLang() {
+  setLang(currentLang === 'de' ? 'en' : 'de');
+}
+
+function setLang(lang) {
+  currentLang = lang;
+  document.documentElement.lang = lang;
+  document.title = t[lang].title;
+  const toggle = document.getElementById('langToggle');
+  if (toggle) toggle.textContent = lang === 'de' ? 'EN' : 'DE';
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    el.textContent = t[lang][el.dataset.i18n];
+  });
+  document.querySelectorAll('[data-i18n-html]').forEach(el => {
+    el.innerHTML = t[lang][el.dataset.i18nHtml];
+  });
+  localStorage.setItem('ff-lang', lang);
+}
+
+(function init() {
+  const saved   = localStorage.getItem('ff-lang');
+  const browser = navigator.language && navigator.language.startsWith('en') ? 'en' : 'de';
+  setLang(saved || browser);
+})();
+</script>
+
+<!-- Cloudflare Web Analytics -->
+<script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "37c0e6c49fff438e8a053b1aeec3fb71"}'></script>
+</body>
+</html>
