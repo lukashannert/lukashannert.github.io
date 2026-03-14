@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>formfaktor3d.de</title>
+<meta name="description" content="FORMFAKTOR 3D-Druckdienstleistungen – 3D-Scan, 3D-Konstruktion und 3D-Druck in Kirchheim unter Teck.">
+<link rel="icon" href="favicon.png" type="image/png">
+<link rel="shortcut icon" href="favicon.png">
+<link rel="apple-touch-icon" href="favicon.png">
+<meta name="theme-color" content="#000000">
+<meta property="og:type" content="website">
+<meta property="og:title" content="FORMFAKTOR – 3D-Druck Kirchheim unter Teck">
+<meta property="og:description" content="3D-Scan, 3D-Konstruktion und 3D-Druck – FORMFAKTOR, Kirchheim unter Teck.">
+<meta property="og:url" content="https://formfaktor3d.de/">
+<meta property="og:image" content="https://formfaktor3d.de/favicon.png">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div id="topbar-placeholder" style="position:fixed;top:0;left:0;right:0;height:60px;background:#000;z-index:200;"></div>
+
+<main>
+  <div class="card" role="main">
+    <p class="eyebrow" data-i18n="eyebrow">// Domain-Status</p>
+    <p class="message" data-i18n-html="message">Die Domain <strong>formfaktor3d.de</strong> ist bereits registriert.</p>
+    <a href="mailto:lukas.hannert@formfaktor3d.de" class="contact-link" data-i18n="cta">Kontakt aufnehmen</a>
+  </div>
+</main>
+
+<div id="footer-placeholder"></div>
+
+<script src="components/components.js"></script>
+
+<script>
+const t = {
+  de: {
+    title:     'formfaktor3d.de',
+    eyebrow:   '// Domain-Status',
+    message:   'Die Domain <strong>formfaktor3d.de</strong> ist bereits registriert.',
+    cta:       'Kontakt aufnehmen',
+    copyright: '© 2026 FORMFAKTOR 3D-Druck Lukas Hannert',
+    imprint:   'Impressum',
+    back:      'Zurück zur Startseite'
+  },
+  en: {
+    title:     'formfaktor3d.de',
+    eyebrow:   '// Domain Status',
+    message:   'The domain <strong>formfaktor3d.de</strong> is already registered.',
+    cta:       'Get in touch',
+    copyright: '© 2026 FORMFAKTOR 3D-Druck Lukas Hannert',
+    imprint:   'Legal Notice',
+    back:      'Back to Homepage'
+  }
+};
+
+let currentLang = 'de';
+
+function toggleLang() {
+  setLang(currentLang === 'de' ? 'en' : 'de');
+}
+
+function setLang(lang) {
+  currentLang = lang;
+  document.documentElement.lang = lang;
+  document.title = t[lang].title;
+  const toggle = document.getElementById('langToggle');
+  if (toggle) toggle.textContent = lang === 'de' ? 'EN' : 'DE';
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    el.textContent = t[lang][el.dataset.i18n];
+  });
+  document.querySelectorAll('[data-i18n-html]').forEach(el => {
+    el.innerHTML = t[lang][el.dataset.i18nHtml];
+  });
+  localStorage.setItem('ff-lang', lang);
+}
+
+(function init() {
+  const saved   = localStorage.getItem('ff-lang');
+  const browser = navigator.language && navigator.language.startsWith('en') ? 'en' : 'de';
+  (window.__componentsLoaded || Promise.resolve()).then(() => setLang(saved || browser));
+})();
+</script>
+
+<script>
+(function() {
+  if (!('ontouchstart' in window)) return;
+  var A = '#85AFFF';
+  var map = [
+    { q: '.lang-toggle',  p: 'color',      r: '#ffffff' },
+    { q: '.contact-link', p: 'background', r: '#000000' },
+    { q: 'footer a',      p: 'color',      r: '#000000' }
+  ];
+  document.addEventListener('touchend', function(e) {
+    for (var i = 0; i < map.length; i++) {
+      var el = e.target.closest(map[i].q);
+      if (!el) continue;
+      (function(el, p, r) {
+        el.style.transition = 'none';
+        el.style[p] = A;
+        requestAnimationFrame(function() { requestAnimationFrame(function() {
+          el.style.transition = p + ' 2s ease';
+          el.style[p] = r;
+          setTimeout(function() { el.style.transition = ''; el.style[p] = ''; }, 2200);
+        }); });
+      })(el, map[i].p, map[i].r);
+      break;
+    }
+  }, { passive: true });
+})();
+</script>
+
+<script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "37c0e6c49fff438e8a053b1aeec3fb71"}'></script>
+</body>
+</html>

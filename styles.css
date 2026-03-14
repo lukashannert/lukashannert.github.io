@@ -1,0 +1,277 @@
+@import url('https://fonts.bunny.net/css?family=roboto:300,400,500,700,900|bebas-neue:400&display=swap');
+
+/* ─── Design Tokens ─────────────────────────────────────── */
+:root {
+  /* Colors */
+  --bg:      #ffffff;
+  --surface: #ffffff;
+  --topbar:  #000000;
+  --text:    #000000;
+  --link:    #8C8C8C;
+  --accent:  #85AFFF;
+
+  /* Shared – heading 3 (eyebrow + section labels) */
+  --t-h3-size:   18px;
+  --t-h3-weight: 700;
+  --t-h3-ls:     0.08em;
+
+
+  /* Impressum – heading 2 (page title) */
+  --t-h2-size:   72px;
+  --t-h2-weight: 900;
+  --t-h2-ls:     0.08em;
+
+  /* Shared – flowing/body text (landing page message + impressum content) */
+  --t-content-size:   16px;
+  --t-content-weight: 400;
+  --t-content-lh:     1.7;
+  --t-content-ls:     0.01em;
+
+  /* Shared – UI buttons / nav links */
+  --t-ui-size:   14px;
+  --t-ui-weight: 700;
+  --t-ui-ls:     0.2em;
+
+  /* Shared – copyright / fine print */
+  --t-copy-size:   12px;
+  --t-copy-weight: 400;
+  --t-copy-ls:     0.07em;
+}
+
+/* ─── Reset ──────────────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* ─── Base ───────────────────────────────────────────────── */
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Roboto', sans-serif;
+  font-size: 12pt;
+  font-weight: 300;
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  padding-top: 60px;
+}
+
+/* ─── Topbar ─────────────────────────────────────────────── */
+.topbar {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  height: 60px;
+  background: var(--topbar);
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1.8rem;
+}
+.topbar-brand {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+.topbar-logo {
+  height: 34px;
+  width: auto;
+  fill: #ffffff;
+  display: block;
+}
+.lang-toggle {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: 'Roboto', sans-serif;
+  font-size: var(--t-ui-size);
+  font-weight: var(--t-ui-weight);
+  letter-spacing: var(--t-ui-ls);
+  text-transform: uppercase;
+  color: #ffffff;
+  padding: 0;
+  transition: color 0.2s;
+}
+
+/* ─── Landing Page ───────────────────────────────────────── */
+main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem 1.5rem;
+  min-height: calc(100vh - 60px);
+}
+.card {
+  background: var(--surface);
+  max-width: 500px;
+  width: 100%;
+  padding: clamp(2.5rem, 7vw, 3.8rem);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  animation: fadeIn 0.65s ease both;
+}
+.eyebrow {
+  font-family: 'Roboto', sans-serif;
+  font-size: var(--t-h3-size);
+  font-weight: var(--t-h3-weight);
+  letter-spacing: var(--t-h3-ls);
+  text-transform: uppercase;
+  color: var(--text);
+  margin-bottom: 0.75rem;
+}
+.message, .section-content {
+  font-family: 'Roboto', sans-serif;
+  font-size: var(--t-content-size);
+  font-weight: var(--t-content-weight);
+  line-height: var(--t-content-lh);
+  letter-spacing: var(--t-content-ls);
+  color: var(--text);
+}
+.message {
+  max-width: 275px;
+  margin-bottom: 2.4rem;
+}
+.message strong { color: var(--text); font-weight: 500; }
+.contact-link {
+  display: inline-block;
+  font-family: 'Roboto', sans-serif;
+  font-size: var(--t-ui-size);
+  font-weight: var(--t-ui-weight);
+  letter-spacing: var(--t-ui-ls);
+  text-transform: uppercase;
+  color: #ffffff;
+  background: #000000;
+  padding: 0.82rem 2rem;
+  text-decoration: none;
+  transition: background 0.22s, color 0.22s;
+  clip-path: polygon(6px 0%, 100% 0%, calc(100% - 6px) 100%, 0% 100%);
+}
+.contact-link:focus { outline: none; }
+
+/* ─── Impressum ──────────────────────────────────────────── */
+.container {
+  max-width: 920px;
+  width: 100%;
+  margin: 0 auto;
+  margin-bottom: auto;
+  padding: 3.5rem 1.5rem 0;
+  animation: fadeUp 0.65s ease both;
+}
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: 'Roboto', sans-serif;
+  font-size: var(--t-ui-size);
+  font-weight: var(--t-ui-weight);
+  letter-spacing: var(--t-ui-ls);
+  text-transform: uppercase;
+  color: var(--link);
+  text-decoration: none;
+  margin-bottom: 7rem;
+  transition: color 0.2s;
+}
+.back-link::before { content: '←'; font-size: 0.9rem; }
+.page-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: var(--t-h2-size);
+  font-weight: var(--t-h2-weight);
+  letter-spacing: var(--t-h2-ls);
+  text-transform: uppercase;
+  color: var(--text);
+  line-height: 1;
+  margin-bottom: 2.8rem;
+}
+.imprint-card {
+  background: var(--surface);
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  margin-bottom: 7rem;
+}
+.section-label {
+  font-family: 'Roboto', sans-serif;
+  font-size: var(--t-h3-size);
+  font-weight: var(--t-h3-weight);
+  letter-spacing: var(--t-h3-ls);
+  text-transform: uppercase;
+  color: var(--text);
+  margin-bottom: 0.9rem;
+  display: block;
+}
+.section-content strong {
+  color: var(--text);
+  font-weight: 500;
+  display: block;
+  margin-bottom: 0.25rem;
+}
+.section-content a {
+  color: var(--link);
+  font-weight: 700;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+/* ─── Footer ─────────────────────────────────────────────── */
+footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 0.85rem;
+  padding: 2.8rem 1.5rem;
+  border-top: 1px solid rgba(0,0,0,0.06);
+  background: var(--surface);
+  opacity: 0;
+  animation: fadeIn 0.65s ease 0.45s both;
+}
+footer a {
+  font-family: 'Roboto', sans-serif;
+  font-size: var(--t-ui-size);
+  font-weight: var(--t-ui-weight);
+  letter-spacing: var(--t-ui-ls);
+  text-transform: uppercase;
+  color: var(--link);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.footer-copy {
+  font-family: 'Roboto', sans-serif;
+  font-size: var(--t-copy-size);
+  font-weight: var(--t-copy-weight);
+  letter-spacing: var(--t-copy-ls);
+  color: var(--link);
+}
+
+/* ─── Mobile ─────────────────────────────────────────────── */
+@media (max-width: 600px) {
+  .topbar-logo { height: 28px; }
+}
+
+/* ─── Hover States ───────────────────────────────────────── */
+@media (hover: hover) {
+  .lang-toggle:hover         { color: var(--accent); }
+  .contact-link:hover        { background: var(--accent); color: #ffffff; }
+  .back-link:hover           { color: var(--accent); }
+  .section-content a:hover   { color: var(--accent); }
+  footer a:hover             { color: var(--accent); }
+}
+
+/* ─── Animations ─────────────────────────────────────────── */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
